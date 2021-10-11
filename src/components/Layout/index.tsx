@@ -1,10 +1,4 @@
-import React, {
-  ReactNode,
-  ReactPortal,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import hoge from "./images/hisafune_101644805_660012601244645_1094594923886376634_n (0-00-00-00).png";
 import Image from "next/image";
 import styles from "./style.module.scss";
@@ -17,11 +11,10 @@ import Scrollbar, { ScrollbarProps } from "react-scrollbars-custom";
 import { useWindowSize } from "@react-hook/window-size";
 
 export type LayoutProps = {
-  background: string;
   children: ReactNode;
 };
 
-function Layout({ background, children }: LayoutProps): JSX.Element {
+function Layout({ children }: LayoutProps): JSX.Element {
   const [width, height] = useWindowSize();
   const [showMenu, setShowMenu] = useState(false);
   const handleClick = useCallback(() => {
@@ -39,11 +32,11 @@ function Layout({ background, children }: LayoutProps): JSX.Element {
   }, [pathname]);
 
   useEffect(() => {
-    setStyle({ height, background, width });
-  }, [background, height, width]);
+    setStyle({ height, width });
+  }, [height, width]);
 
   return (
-    <>
+    <Scrollbar noScrollY={true} rtl={true} style={style}>
       <AnimatePresence exitBeforeEnter={true} initial={true}>
         <motion.main
           animate={{ opacity: 1 }}
@@ -51,9 +44,7 @@ function Layout({ background, children }: LayoutProps): JSX.Element {
           key={pathname}
           initial={{ opacity: 0 }}
         >
-          <Scrollbar noScrollY={true} rtl={true} style={style}>
-            {children}
-          </Scrollbar>
+          {children}
         </motion.main>
       </AnimatePresence>
       <div className={styles.buttonWrapper} ref={ref}>
@@ -110,7 +101,7 @@ function Layout({ background, children }: LayoutProps): JSX.Element {
           <Image alt="hoge" layout="fill" src={hoge} />
         </button>
       </div>
-    </>
+    </Scrollbar>
   );
 }
 

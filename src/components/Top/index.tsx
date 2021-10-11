@@ -4,7 +4,6 @@ import piyo from "./images/hisafune_193698694_227680402142193_324835413303916937
 import styles from "./style.module.scss";
 import { useWindowSize } from "@react-hook/window-size";
 import React, { CSSProperties, useContext, useEffect, useMemo } from "react";
-import BackgroundContext from "contexts/BackgroundContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Autoplay, EffectFade, Lazy, Pagination } from "swiper";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -24,7 +23,6 @@ function Top(): JSX.Element {
     }),
     [height, width]
   );
-  const setBackground = useContext(BackgroundContext);
   const items = useMemo(
     () =>
       [
@@ -65,10 +63,6 @@ function Top(): JSX.Element {
       )),
     [imageWrapperStyle]
   );
-
-  useEffect(() => {
-    setBackground("#fff");
-  }, [setBackground]);
 
   return (
     <div className={styles.wrapper} style={style}>

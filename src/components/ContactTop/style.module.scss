@@ -3,11 +3,28 @@
   display: flex;
 }
 
+.wrapper::before {
+  background: linear-gradient(to right bottom, #ebebeb, #efefef);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.inner {
+  align-items: center;
+  display: flex;
+  height: inherit;
+  padding: 0 24px;
+  position: relative;
+}
+
 .formInner {
   display: flex;
   gap: 24px;
   height: 360px;
-  padding: 0 24px;
 }
 
 .fieldsWrapper {

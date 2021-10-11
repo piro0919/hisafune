@@ -3,9 +3,21 @@
   display: flex;
 }
 
+.wrapper::before {
+  background: url("./images/hisafune_181971851_137233878423703_2648495249433629186_n.png")
+    no-repeat center / cover #000;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .list {
   display: flex;
   gap: 24px;
+  position: relative;
 }
 
 .anchor {

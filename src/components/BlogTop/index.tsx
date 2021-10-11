@@ -1,22 +1,13 @@
 import { useWindowSize } from "@react-hook/window-size";
-import BackgroundContext from "contexts/BackgroundContext";
-import React, { CSSProperties, useContext, useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import Link from "next/link";
 import useMeasure from "react-use-measure";
-import hoge from "./images/hisafune_181971851_137233878423703_2648495249433629186_n.png";
 
 function BlogTop(): JSX.Element {
   const [width, height] = useWindowSize();
   const [style, setStyle] = useState<CSSProperties>();
-  const setBackground = useContext(BackgroundContext);
   const [ref, { width: innerWidth }] = useMeasure();
-
-  useEffect(() => {
-    const { src } = hoge;
-
-    setBackground(`url(${src}) no-repeat center / cover #000`);
-  }, [setBackground]);
 
   useEffect(() => {
     setStyle({
