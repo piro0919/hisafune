@@ -2,6 +2,7 @@
 
 html {
   font: 62.5% "Shippori Mincho B1", serif;
+  overflow: hidden;
 }
 
 body {
@@ -10,7 +11,7 @@ body {
   font-size: 1.6rem;
   letter-spacing: 1px;
   line-height: 1.5;
-  overflow: scroll hidden;
+  overflow: hidden;
 }
 
 a {

@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { useForm } from "react-hook-form";
@@ -12,6 +13,7 @@ import ContentEditable, { Props } from "react-contenteditable";
 import striptags from "striptags";
 import BackgroundContext from "contexts/BackgroundContext";
 import useMeasure from "react-use-measure";
+import { Scrollbar } from "react-scrollbars-custom";
 
 function ContactTop(): JSX.Element {
   const [width, height] = useWindowSize();
@@ -42,93 +44,89 @@ function ContactTop(): JSX.Element {
       height: `${height}px`,
       justifyContent: width > formInnerWidth ? "center" : "flex-start",
     });
-
-    setTimeout(() => {
-      window.scrollTo({
-        left: formInnerWidth,
-      });
-    }, 250);
   }, [formInnerWidth, height, width]);
 
   return (
-    <div className={styles.wrapper} style={style}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.formInner} ref={ref}>
-          <div className={styles.fieldsWrapper}>
-            <div className={styles.fieldWrapper}>
-              <label className={styles.label} htmlFor="name">
-                お名前
-                <abbr className={styles.abbr}>*</abbr>
-              </label>
-              <ContentEditable
-                {...register("name")}
-                className={styles.input}
-                contentEditable={true}
-                html=""
-                id="name"
-                onChange={handleChange}
-              />
+    <Scrollbar noScrollY={true} rtl={true} style={{ height, width }}>
+      <div className={styles.wrapper} style={style}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.formInner} ref={ref}>
+            <div className={styles.fieldsWrapper}>
+              <div className={styles.fieldWrapper}>
+                <label className={styles.label} htmlFor="name">
+                  お名前
+                  <abbr className={styles.abbr}>*</abbr>
+                </label>
+                <ContentEditable
+                  {...register("name")}
+                  className={styles.input}
+                  contentEditable={true}
+                  html=""
+                  id="name"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.fieldWrapper}>
+                <label className={styles.label} htmlFor="subject">
+                  件名
+                </label>
+                <ContentEditable
+                  {...register("subject")}
+                  className={styles.input}
+                  contentEditable={true}
+                  html=""
+                  id="subject"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.fieldWrapper}>
+                <label className={styles.label} htmlFor="tel">
+                  ご連絡先（電話番号）
+                </label>
+                <ContentEditable
+                  {...register("tel")}
+                  className={styles.input}
+                  contentEditable={true}
+                  html=""
+                  id="tel"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.fieldWrapper}>
+                <label className={styles.label} htmlFor="email">
+                  ご連絡先（メールアドレス）
+                </label>
+                <ContentEditable
+                  {...register("subject")}
+                  className={styles.input}
+                  contentEditable={true}
+                  html=""
+                  id="email"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.fieldWrapper}>
+                <label className={styles.label} htmlFor="body">
+                  ご依頼内容
+                  <abbr className={styles.abbr}>*</abbr>
+                </label>
+                <ContentEditable
+                  {...register("body")}
+                  className={styles.textarea}
+                  contentEditable={true}
+                  html=""
+                  id="body"
+                  onChange={handleChangeTextarea}
+                />
+              </div>
             </div>
-            <div className={styles.fieldWrapper}>
-              <label className={styles.label} htmlFor="subject">
-                件名
-              </label>
-              <ContentEditable
-                {...register("subject")}
-                className={styles.input}
-                contentEditable={true}
-                html=""
-                id="subject"
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.fieldWrapper}>
-              <label className={styles.label} htmlFor="tel">
-                ご連絡先（電話番号）
-              </label>
-              <ContentEditable
-                {...register("tel")}
-                className={styles.input}
-                contentEditable={true}
-                html=""
-                id="tel"
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.fieldWrapper}>
-              <label className={styles.label} htmlFor="email">
-                ご連絡先（メールアドレス）
-              </label>
-              <ContentEditable
-                {...register("subject")}
-                className={styles.input}
-                contentEditable={true}
-                html=""
-                id="email"
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.fieldWrapper}>
-              <label className={styles.label} htmlFor="body">
-                ご依頼内容
-                <abbr className={styles.abbr}>*</abbr>
-              </label>
-              <ContentEditable
-                {...register("body")}
-                className={styles.textarea}
-                contentEditable={true}
-                html=""
-                id="body"
-                onChange={handleChangeTextarea}
-              />
-            </div>
+            <button className={styles.button} type="submit">
+              送信する
+            </button>
           </div>
-          <button className={styles.button} type="submit">
-            送信する
-          </button>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </Scrollbar>
   );
 }
 

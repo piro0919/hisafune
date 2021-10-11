@@ -8,6 +8,7 @@ import React, { CSSProperties, useContext, useEffect, useMemo } from "react";
 import BackgroundContext from "contexts/BackgroundContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Autoplay, EffectFade, Lazy, Pagination } from "swiper";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function Top(): JSX.Element {
   const [width, height] = useWindowSize();
@@ -52,13 +53,24 @@ function Top(): JSX.Element {
           }}
         >
           <div className={styles.imageWrapper} style={imageWrapperStyle}>
-            <Image
+            {/* <Image
               alt=""
               className={styles.image}
               layout="fill"
               objectFit="contain"
               quality={100}
               src={hoge}
+            /> */}
+            <LazyLoadImage
+              className={styles.image}
+              height={hoge.height}
+              src={hoge.src}
+              style={{
+                height: "100%",
+                objectFit: "contain",
+                width: "100%",
+              }}
+              width={hoge.width}
             />
           </div>
         </SwiperSlide>
@@ -69,7 +81,7 @@ function Top(): JSX.Element {
           }}
         >
           <div className={styles.imageWrapper} style={imageWrapperStyle}>
-            <Image
+            {/* <Image
               alt=""
               className={styles.image}
               layout="fill"
@@ -77,6 +89,17 @@ function Top(): JSX.Element {
               placeholder="blur"
               quality={100}
               src={fuga}
+            /> */}
+            <LazyLoadImage
+              className={styles.image}
+              height={fuga.height}
+              src={fuga.src}
+              style={{
+                height: "100%",
+                objectFit: "contain",
+                width: "100%",
+              }}
+              width={fuga.width}
             />
           </div>
         </SwiperSlide>
@@ -87,7 +110,7 @@ function Top(): JSX.Element {
           }}
         >
           <div className={styles.imageWrapper} style={imageWrapperStyle}>
-            <Image
+            {/* <Image
               alt=""
               className={styles.image}
               layout="fill"
@@ -95,6 +118,17 @@ function Top(): JSX.Element {
               placeholder="blur"
               quality={100}
               src={piyo}
+            /> */}
+            <LazyLoadImage
+              className={styles.image}
+              height={piyo.height}
+              src={piyo.src}
+              style={{
+                height: "100%",
+                objectFit: "contain",
+                width: "100%",
+              }}
+              width={piyo.width}
             />
           </div>
         </SwiperSlide>

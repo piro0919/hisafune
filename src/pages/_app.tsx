@@ -8,16 +8,22 @@ import type { AppProps } from "next/app";
 import React, { useState } from "react";
 import Layout from "components/Layout";
 import BackgroundContext from "contexts/BackgroundContext";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [background, setBackground] = useState("");
 
   return (
-    <BackgroundContext.Provider value={setBackground}>
-      <Layout background={background}>
-        <Component {...pageProps} />
-      </Layout>
-    </BackgroundContext.Provider>
+    <>
+      <Head>
+        <meta content="initial-scale=1.0, width=device-width" name="viewport" />
+      </Head>
+      <BackgroundContext.Provider value={setBackground}>
+        <Layout background={background}>
+          <Component {...pageProps} />
+        </Layout>
+      </BackgroundContext.Provider>
+    </>
   );
 }
 
