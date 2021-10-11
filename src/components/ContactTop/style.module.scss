@@ -6,13 +6,13 @@
 .formInner {
   display: flex;
   gap: 24px;
+  height: 360px;
   padding: 0 24px;
 }
 
 .fieldsWrapper {
   display: flex;
   gap: 24px;
-  height: 360px;
 }
 
 .fieldWrapper {
@@ -43,9 +43,8 @@
 }
 
 .textarea {
-  min-width: 240px;
+  width: 360px;
   overflow: scroll hidden;
-  resize: horizontal;
 }
 
 .button {

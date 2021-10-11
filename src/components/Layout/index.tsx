@@ -12,8 +12,9 @@ import { useOutsideClickRef } from "rooks";
 import { SocialIcon } from "react-social-icons";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/dist/client/router";
-import { createPortal } from "react-dom";
+import { useRouter } from "next/router";
+import Scrollbar, { ScrollbarProps } from "react-scrollbars-custom";
+import { useWindowSize } from "@react-hook/window-size";
 
 export type LayoutProps = {
   background: string;
@@ -21,6 +22,7 @@ export type LayoutProps = {
 };
 
 function Layout({ background, children }: LayoutProps): JSX.Element {
+  const [width, height] = useWindowSize();
   const [showMenu, setShowMenu] = useState(false);
   const handleClick = useCallback(() => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
@@ -30,61 +32,42 @@ function Layout({ background, children }: LayoutProps): JSX.Element {
   }, []);
   const [ref] = useOutsideClickRef(handleOutsideClick);
   const { pathname } = useRouter();
-  const [portal, setPortal] = useState<ReactPortal>();
-
-  useEffect(() => {
-    const element = document.getElementById("__next");
-
-    if (!element) {
-      return;
-    }
-
-    const portal = createPortal(
-      <motion.div
-        animate={{ opacity: 1 }}
-        className={styles.backgroundPortal}
-        exit={{ opacity: 0 }}
-        key={pathname}
-        initial={{ opacity: 0 }}
-        style={{
-          background,
-        }}
-      />,
-      element
-    );
-
-    setPortal(portal);
-  }, [background, pathname]);
+  const [style, setStyle] = useState<ScrollbarProps["style"]>();
 
   useEffect(() => {
     setShowMenu(false);
   }, [pathname]);
 
+  useEffect(() => {
+    setStyle({ height, background, width });
+  }, [background, height, width]);
+
   return (
     <>
-      <AnimatePresence exitBeforeEnter={true} initial={false}>
+      <AnimatePresence exitBeforeEnter={true} initial={true}>
         <motion.main
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           key={pathname}
           initial={{ opacity: 0 }}
         >
-          {children}
-          {portal}
+          <Scrollbar noScrollY={true} rtl={true} style={style}>
+            {children}
+          </Scrollbar>
         </motion.main>
       </AnimatePresence>
       <div className={styles.buttonWrapper} ref={ref}>
         {showMenu ? (
           <aside className={styles.aside}>
             <ul className={styles.snsList}>
-              <li className={styles.snsItem}>
+              <li>
                 <SocialIcon
                   className={styles.icon}
                   target="_blank"
                   url="https://www.instagram.com/hisafune"
                 />
               </li>
-              <li className={styles.snsItem}>
+              <li>
                 <SocialIcon
                   className={styles.icon}
                   target="_blank"
@@ -95,18 +78,8 @@ function Layout({ background, children }: LayoutProps): JSX.Element {
             <nav className={styles.nav}>
               <ul className={styles.list}>
                 <li className={styles.item}>
-                  <Link href="/contact">
-                    <a className={styles.a}>ご依頼等</a>
-                  </Link>
-                </li>
-                <li className={styles.item}>
-                  <Link href="/about">
-                    <a className={styles.a}>ひさ舟について</a>
-                  </Link>
-                </li>
-                <li className={styles.item}>
-                  <Link href="/blog">
-                    <a className={styles.a}>日記</a>
+                  <Link href="/">
+                    <a className={styles.a}>トップ</a>
                   </Link>
                 </li>
                 <li className={styles.item}>
@@ -115,8 +88,18 @@ function Layout({ background, children }: LayoutProps): JSX.Element {
                   </Link>
                 </li>
                 <li className={styles.item}>
-                  <Link href="/">
-                    <a className={styles.a}>トップ</a>
+                  <Link href="/blog">
+                    <a className={styles.a}>日記</a>
+                  </Link>
+                </li>
+                <li className={styles.item}>
+                  <Link href="/about">
+                    <a className={styles.a}>ひさ舟について</a>
+                  </Link>
+                </li>
+                <li className={styles.item}>
+                  <Link href="/contact">
+                    <a className={styles.a}>ご依頼等</a>
                   </Link>
                 </li>
               </ul>

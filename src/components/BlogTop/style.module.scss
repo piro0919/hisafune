@@ -1,13 +1,10 @@
 .wrapper {
   align-items: center;
   display: flex;
-  // TODO
-  justify-content: center;
 }
 
 .list {
   display: flex;
-  flex-direction: row-reverse;
   gap: 24px;
 }
 
@@ -18,9 +15,11 @@
 }
 
 .date {
+  color: #fff;
   writing-mode: vertical-rl;
 }
 
 .title {
+  color: #fff;
   writing-mode: vertical-rl;
 }

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import hoge from "./images/hisafune_240943075_188204666710847_4890373253446551685_n (0-00-00-00).png";
 import fuga from "./images/hisafune_195311938_281397087012975_3500752894579917638_n (0-00-00-00).png";
 import piyo from "./images/hisafune_193698694_227680402142193_3248354133039169378_n (0-00-00-00).png";
@@ -26,6 +25,46 @@ function Top(): JSX.Element {
     [height, width]
   );
   const setBackground = useContext(BackgroundContext);
+  const items = useMemo(
+    () =>
+      [
+        {
+          background: "linear-gradient(to right bottom, #c3b2a2, #9a8776)",
+          image: hoge,
+        },
+        {
+          background: "linear-gradient(to right bottom, #a899ae, #827088)",
+          image: fuga,
+        },
+        {
+          background: "linear-gradient(to right bottom, #909668, #666c40)",
+          image: piyo,
+        },
+      ].map(({ background, image: { height, src, width } }) => (
+        <SwiperSlide
+          className={styles.slide}
+          key={src}
+          style={{
+            background,
+          }}
+        >
+          <div
+            className={styles.lazyLoadImageWrapper}
+            style={imageWrapperStyle}
+          >
+            <LazyLoadImage
+              className={styles.image}
+              effect="blur"
+              height={height}
+              src={src}
+              width={width}
+              wrapperClassName={styles.imageWrapper}
+            />
+          </div>
+        </SwiperSlide>
+      )),
+    [imageWrapperStyle]
+  );
 
   useEffect(() => {
     setBackground("#fff");
@@ -46,92 +85,7 @@ function Top(): JSX.Element {
         speed={1500}
         style={style}
       >
-        <SwiperSlide
-          className={styles.slide}
-          style={{
-            background: "linear-gradient(to right bottom, #c3b2a2, #9a8776)",
-          }}
-        >
-          <div className={styles.imageWrapper} style={imageWrapperStyle}>
-            {/* <Image
-              alt=""
-              className={styles.image}
-              layout="fill"
-              objectFit="contain"
-              quality={100}
-              src={hoge}
-            /> */}
-            <LazyLoadImage
-              className={styles.image}
-              height={hoge.height}
-              src={hoge.src}
-              style={{
-                height: "100%",
-                objectFit: "contain",
-                width: "100%",
-              }}
-              width={hoge.width}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide
-          className={styles.slide}
-          style={{
-            background: "linear-gradient(to right bottom, #a899ae, #827088)",
-          }}
-        >
-          <div className={styles.imageWrapper} style={imageWrapperStyle}>
-            {/* <Image
-              alt=""
-              className={styles.image}
-              layout="fill"
-              objectFit="contain"
-              placeholder="blur"
-              quality={100}
-              src={fuga}
-            /> */}
-            <LazyLoadImage
-              className={styles.image}
-              height={fuga.height}
-              src={fuga.src}
-              style={{
-                height: "100%",
-                objectFit: "contain",
-                width: "100%",
-              }}
-              width={fuga.width}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide
-          className={styles.slide}
-          style={{
-            background: "linear-gradient(to right bottom, #909668, #666c40)",
-          }}
-        >
-          <div className={styles.imageWrapper} style={imageWrapperStyle}>
-            {/* <Image
-              alt=""
-              className={styles.image}
-              layout="fill"
-              objectFit="contain"
-              placeholder="blur"
-              quality={100}
-              src={piyo}
-            /> */}
-            <LazyLoadImage
-              className={styles.image}
-              height={piyo.height}
-              src={piyo.src}
-              style={{
-                height: "100%",
-                objectFit: "contain",
-                width: "100%",
-              }}
-              width={piyo.width}
-            />
-          </div>
-        </SwiperSlide>
+        {items}
       </Swiper>
     </div>
   );

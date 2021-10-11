@@ -9,14 +9,12 @@ function Seo({
 }: SeoProps): JSX.Element {
   return (
     <NextSeo
-      defaultTitle="書家 河村ひさ舟"
       description={description}
       // TODO
       nofollow={true}
       // TODO
       noindex={true}
-      title={title}
-      titleTemplate="%s - 書家 河村ひさ舟"
+      title={title ? `${title} - 書家 河村ひさ舟` : "書家 河村ひさ舟"}
     />
   );
 }
