@@ -1,0 +1,89 @@
+.backgroundPortal {
+  height: 100%;
+  left: 0;
+  opacity: 0.25;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.buttonWrapper {
+  bottom: 0;
+  margin: 24px;
+  position: fixed;
+  right: 0;
+  z-index: 1;
+}
+
+.aside {
+  bottom: 100%;
+  display: grid;
+  filter: drop-shadow(0 0 2px rgba(#fff, 0.5));
+  gap: 2px;
+  margin: 16px 0;
+  position: absolute;
+  right: 0;
+}
+
+.aside::before {
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  content: "";
+  display: block;
+  filter: inherit;
+  height: 16px;
+  position: absolute;
+  right: 16px;
+  transform: rotate(45deg);
+  top: calc(100% - 8px);
+  width: 16px;
+  z-index: 1;
+}
+
+.snsList {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px 8px 0 0;
+  display: grid;
+  gap: 8px;
+  grid-auto-flow: column;
+  justify-content: flex-end;
+  padding: 8px;
+  position: relative;
+}
+
+.icon {
+  height: 36px !important;
+  width: 36px !important;
+}
+
+.nav {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 8px 8px;
+  padding: 16px 16px 32px;
+  position: relative;
+}
+
+.list {
+  display: grid;
+  gap: 16px;
+  grid-auto-flow: column;
+  justify-content: flex-end;
+}
+
+.item {
+  font-size: 2rem;
+  writing-mode: vertical-rl;
+}
+
+.a {
+  display: block;
+}
+
+.button {
+  height: 48px;
+  width: 48px;
+}

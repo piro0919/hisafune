@@ -1,0 +1,26 @@
+.wrapper {
+  align-items: center;
+  display: flex;
+  // TODO
+  justify-content: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 24px;
+}
+
+.anchor {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+
+.date {
+  writing-mode: vertical-rl;
+}
+
+.title {
+  writing-mode: vertical-rl;
+}

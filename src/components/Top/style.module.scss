@@ -1,0 +1,29 @@
+.wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper {
+  width: 100%;
+}
+
+.slide {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.imageWrapper {
+  max-height: 920px;
+  max-width: 640px;
+  position: relative;
+}
+
+.imageWrapper > div {
+  overflow: visible !important;
+}
+
+.image {
+  filter: drop-shadow(16px 16px 16px rgba(#000, 0.5)) !important;
+}
