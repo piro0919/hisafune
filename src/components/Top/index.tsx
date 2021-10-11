@@ -8,7 +8,6 @@ import React, { CSSProperties, useContext, useEffect, useMemo } from "react";
 import BackgroundContext from "contexts/BackgroundContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Autoplay, EffectFade, Lazy, Pagination } from "swiper";
-import Loader from "react-loader-spinner";
 
 function Top(): JSX.Element {
   const [width, height] = useWindowSize();
