@@ -2,7 +2,7 @@
   "dependencies": {
     "@react-hook/window-size": "3.0.7",
     "dayjs": "1.10.7",
-    "framer-motion": "4.1.17",
+    "framer-motion": "5.4.5",
     "microcms-js-sdk": "1.2.0",
     "next": "11.1.2",
     "next-seo": "4.28.1",
