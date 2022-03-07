@@ -4,7 +4,7 @@
     "dayjs": "1.10.7",
     "framer-motion": "4.1.17",
     "microcms-js-sdk": "1.2.0",
-    "next": "11.1.2",
+    "next": "11.1.4",
     "next-seo": "4.28.1",
     "react": "17.0.2",
     "react-contenteditable": "3.3.6",
@@ -25,7 +25,7 @@
     "@types/react-dom": "17.0.9",
     "@types/react-lazy-load-image-component": "1.5.2",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
+    "eslint-config-next": "11.1.4",
     "typescript": "4.4.3"
   },
   "name": "hisafune",
